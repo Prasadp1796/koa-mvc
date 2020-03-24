@@ -2,7 +2,7 @@ const user = require('../models/users.model');
 
 class ManageUsers{
      /**
-     * Find a city
+     * Find a User
      * @param {ctx} Koa Context
      */
     async find(ctx) {
@@ -11,7 +11,7 @@ class ManageUsers{
     }
 
     /**
-    * Add a user
+    * Add a User
     * @param {ctx} Koa Context
     */
     async add(ctx) {
