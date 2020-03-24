@@ -15,11 +15,12 @@
 <div class="container-fluid">
     <div class="card mt-5">
         <div class="card-head bg-primary">
-            <h4 class="text-center text-light py-3">Manage Users</h4>
+            <h4 class="text-center text-light py-3">Manage Users <%-name%></h4>
         </div>
         <div class="card-body">
             <div class="col-12 text-right">
                 <a class="btn btn-primary" href="/users/create">Create User</a>
+                <a class="btn btn-primary" href="/logout">Log Out</a>
             </div>
             <div class="table-responsive mt-2">
                 <table class="table table-bordered table-hover table-stripped  text-center text-wrap">
@@ -37,10 +38,10 @@
                     <% let count = 0; for(let user of users){ %>
                     <tr>
                         <td><%- ++count %></td>
-                        <td><%- user.firstName %></td>
-                        <td><%- user.lastName %></td>
-                        <td><%- user.emailId %></td>
-                        <td><%- user.contactNumber %></td>
+                        <td><%- user.first_name %></td>
+                        <td><%- user.last_name %></td>
+                        <td><%- user.email %></td>
+                        <td><%- user.contact %></td>
                         <td>
                             <a class="btn btn-warning text-light" href="/users/editUser?UserID=<%= user._id %>">Edit</a>
                             <a class="btn btn-danger text-light" href="/users/deleteUser?UserID=<%= user._id %>">Delete</a>
