@@ -52,7 +52,8 @@ views(app, {
   layout: 'layout',
   viewExt: 'ejs',
   cache: false,
-  debug: true
+  debug: false,
+  locals: {}
 });
 // logger
 app.use(async (ctx, next) => {
