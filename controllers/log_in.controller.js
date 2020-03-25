@@ -8,7 +8,6 @@ class LoginController{
     async logInUser(ctx){
     
         const userData = ctx.request.body;
-        console.log(userData);
         try{
             const loginUser = await user.findOne({emailId: userData.emailId});
             if(!loginUser){

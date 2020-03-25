@@ -1,6 +1,5 @@
 const Koa = require('koa')
-const app = new Koa()
-const views = require('koa-views')
+const app = new Koa();
 const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
@@ -10,6 +9,8 @@ const config = require('./config/app_config');
 const helmet = require('koa-helmet');
 const routing = require('./routes/index');
 const session = require('koa-session');
+const views = require('koa-ejs');
+const path = require('path');
 
 //Database Connectivity
 mongoose.connect(config.connectionString, { useNewUrlParser: true,  useUnifiedTopology: true  } );
@@ -46,10 +47,13 @@ app.use(json());
 app.use(logger());
 app.use(require('koa-static')(__dirname + '/public'))
 
-app.use(views(__dirname + '/views', {
-  extension: 'ejs',
-}))
-
+views(app, {
+  root: path.join(__dirname, 'views'),
+  layout: 'layout',
+  viewExt: 'ejs',
+  cache: false,
+  debug: true
+});
 // logger
 app.use(async (ctx, next) => {
   const start = new Date()
@@ -62,6 +66,7 @@ app.use(async (ctx, next) => {
 //Locals For Views
 app.use(async (ctx, next)=>{
   ctx.state.name = ctx.session.emailId;
+  ctx.state.title = "Site Name";
   await next();
 })
 
